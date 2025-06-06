@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>여러 이미지 커스텀 드래그 앤 드롭</title>
+  
+  <style>
+    body {
+        background-color: rgb(0, 255, 225);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    /* 배경은 z-index를 낮게 설정 */
+    #background {
+      position: absolute;
+      z-index: 1;
+    }
+    #feedback {
+      position: absolute;
+      z-index: 1;
+    }
+    /* 드래그 가능한 이미지는 z-index를 높게 설정 */
+    img.draggable {
+      position: absolute;
+      cursor: grab;
+      user-select: none;
+      z-index: 2;
+    }
+    #text {
+      position: absolute;
+      z-index: 1;
+    }
+    #text2 {
+      position: absolute;
+      z-index: 1;
+    }
+    #text3 {
+      position: absolute;
+      z-index: 1;
+    }
+    .feedback:hover {
+      transform: scale(1.1); /* 마우스를 올리면 10% 확대 */
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- 배경 이미지 -->
+  <img id="background" src="background.png" alt="background" style="left:400px; top:250px;">
+ 
+
+  <a href="https://forms.gle/2xmVNJz8Qa37BvdTA">
+    <img id="feedback" src="feedback.png" class="feedback" alt="feedback" style="left:1200px; top:650px; width: 100px;" onclick="window.location.href='feedback.html'">
+</a>
+
+  <!-- 드래그 가능한 이미지 6개 (draggable 속성을 false로 설정) -->
+  <img class="draggable" id="draggableImage1" src="piece1.png" alt="Piece 1" draggable="false" style="left:100px; top:100px;">
+  <img class="draggable" id="draggableImage2" src="piece2.png" alt="Piece 2" draggable="false" style="left:200px; top:100px;">
+  <img class="draggable" id="draggableImage3" src="piece3.png" alt="Piece 3" draggable="false" style="left:300px; top:100px;">
+  <img class="draggable" id="draggableImage4" src="piece4.png" alt="Piece 4" draggable="false" style="left:400px; top:100px;">
+  <img class="draggable" id="draggableImage5" src="piece5.png" alt="Piece 5" draggable="false" style="left:500px; top:100px;">
+  <img class="draggable" id="draggableImage6" src="piece6.png" alt="Piece 6" draggable="false" style="left:600px; top:100px;">
+
+  
+
+  <img class="draggable" id="draggableImage1" src="puzzle1.png" alt="Piece 1" draggable="false" style="left:100px; top:100px;width:220px;">
+  <img class="draggable" id="draggableImage2" src="puzzle2.png" alt="Piece 2" draggable="false" style="left:200px; top:100px;width:280px; height: 220px;">
+  <img class="draggable" id="draggableImage3" src="puzzle3.png" alt="Piece 3" draggable="false" style="left:300px; top:100px;width:200px; height: 220px;">
+  <img class="draggable" id="draggableImage4" src="puzzle4.png" alt="Piece 4" draggable="false" style="left:400px; top:100px;width:210px; height: 220px; ">
+  <img class="draggable" id="draggableImage5" src="puzzle5.png" alt="Piece 5" draggable="false" style="left:500px; top:100px;width:180px; height: 220px;">
+  <img class="draggable" id="draggableImage6" src="puzzle6.png" alt="Piece 6" draggable="false" style="left:600px; top:100px;width:250px;">
+  <img class="draggable" id="draggableImage1" src="puzzle7.png" alt="Piece 1" draggable="false" style="left:100px; top:100px;width:220px; height: 260px;">
+  <img class="draggable" id="draggableImage2" src="puzzle8.png" alt="Piece 2" draggable="false" style="left:200px; top:100px;width:250px;">
+  <img class="draggable" id="draggableImage3" src="puzzle9.png" alt="Piece 3" draggable="false" style="left:300px; top:100px;width:200px;">
+  <img class="draggable" id="draggableImage4" src="puzzle10.png" alt="Piece 4" draggable="false" style="left:400px; top:100px;width:250px;">
+  <img class="draggable" id="draggableImage5" src="puzzle11.png" alt="Piece 5" draggable="false" style="left:500px; top:100px;width:250px;">
+  <img class="draggable" id="draggableImage6" src="puzzle12.png" alt="Piece 6" draggable="false" style="left:600px; top:100px;width:200px;">
+  <img id="text" src="text2.png" class="image-element" style="top:50px; left: 50px; width: 200px;">
+  <img id="text2" src="text2.png" class="image-element" style=" top: 50px; left: 260px; width: 200px;">
+  <img id="text3" src="text2.png" class="image-element" style="top: 50px; left: 470px; width: 200px;">
+  <script>
+    // 선택된 모든 드래그 가능한 이미지에 대해 마우스 이벤트 등록
+    const draggables = document.querySelectorAll('img.draggable');
+    
+    draggables.forEach(el => {
+      el.addEventListener('mousedown', startDrag);
+    });
+    
+    function startDrag(e) {
+      const el = e.currentTarget;
+      el.style.cursor = 'grabbing';
+      
+      // 이미지 내에서 클릭한 위치의 오프셋 계산
+      const rect = el.getBoundingClientRect();
+      const offsetX = e.clientX - rect.left;
+      const offsetY = e.clientY - rect.top;
+      
+      // mousemove 이벤트 핸들러: 이미지 위치 업데이트
+      function onMouseMove(e) {
+        const newLeft = e.clientX - offsetX;
+        const newTop = e.clientY - offsetY;
+        el.style.left = newLeft + 'px';
+        el.style.top = newTop + 'px';
+      }
+      
+      // mouseup 이벤트 핸들러: 드래그 종료 후 이벤트 제거
+      function onMouseUp(e) {
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+        el.style.cursor = 'grab';
+      }
+      
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    }
+  </script>
+</body>
+</html>

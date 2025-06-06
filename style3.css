@@ -1,0 +1,52 @@
+/* 페이지 기본 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* 드래그 가능한 이미지 스타일 */
+  #draggableImage1 {
+    position: absolute;
+    top: 100px;   /* 초기 위치 설정 */
+    left: 100px;  /* 초기 위치 설정 */
+    cursor: move;
+    width: 150px; /* 필요에 따라 크기 조정 */
+  }
+  #draggableImage2 {
+    position: absolute;
+    top: 100px;   /* 초기 위치 설정 */
+    left: 100px;  /* 초기 위치 설정 */
+    cursor: move;
+    width: 150px; /* 필요에 따라 크기 조정 */
+  }
+  #draggableImage3 {
+    position: absolute;
+    top: 100px;   /* 초기 위치 설정 */
+    left: 100px;  /* 초기 위치 설정 */
+    cursor: move;
+    width: 150px; /* 필요에 따라 크기 조정 */
+  }
+  #draggableImage4 {
+    position: absolute;
+    top: 100px;   /* 초기 위치 설정 */
+    left: 100px;  /* 초기 위치 설정 */
+    cursor: move;
+    width: 150px; /* 필요에 따라 크기 조정 */
+  }
+  #draggableImage5 {
+    position: absolute;
+    top: 100px;   /* 초기 위치 설정 */
+    left: 100px;  /* 초기 위치 설정 */
+    cursor: move;
+    width: 150px; /* 필요에 따라 크기 조정 */
+  }
+  #draggableImage6 {
+    position: absolute;
+    top: 100px;   /* 초기 위치 설정 */
+    left: 100px;  /* 초기 위치 설정 */
+    cursor: move;
+    width: 150px; /* 필요에 따라 크기 조정 */
+  }
+  

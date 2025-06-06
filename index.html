@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>start</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 전체 페이지 스타일 */
+    
+    /* 동그라미 이미지 크기 설정, 1500px로 크기 설정 */
+    #circle {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%); /* 수평 중앙 정렬 */
+        width: 1500px; /* 1500px로 설정 */
+        height: auto;
+        z-index: -2; /* 다른 요소들보다 뒤로 배치 */
+    }
+
+    /* 텍스트 이미지 스타일 */
+    #colosseum-text {
+        display: block;
+        margin: 100px auto; /* 텍스트와 버튼 간의 간격을 조정 */
+        font-size: 20px;
+        z-index: 1; /* 텍스트가 circle.gif 위에 위치 */
+        margin-top: 300px; /* 텍스트를 화면 중앙에 가깝게 조정 */
+        width: 750px;
+        height:auto;
+    }
+
+    /* start.png 이미지 크기 조정 */
+    #start-image {
+        width: 150px; /* 가로 크기 */
+        height: auto; /* 세로 크기 */
+        cursor: pointer; /* 클릭 가능하게 커서 변경 */
+        display: block;
+        margin:0px auto; /* 버튼을 텍스트 아래에 두고, 간격 조정 */
+        transition: transform 0.3s ease;
+        z-index: 2; /* 버튼이 텍스트 위에 위치 */
+        margin-top: 10px; /* 버튼을 텍스트 아래에 배치 */
+    }
+
+    #start-image:hover {
+        transform: scale(1.1); /* 10% 확대 */
+    }
+    
+  </style>
+  <script type="text/javascript">
+    function goToPage2() {
+        window.location.href = 'start.html'; // 페이지 2로 이동
+    }
+  </script>
+</head>
+<body>
+  <!-- 동그라미는 화면 상단에 위치 -->
+  <img id="circle" src="circle.gif" alt="circle">
+
+  <!-- 텍스트와 이미지들 중앙 정렬 -->
+  <div class="image-container">
+    <img id="colosseum-text" src="colosseum text.png" alt="Colosseum text">
+    <img id="start-image" src="start.png" alt="start" onclick="goToPage2()">
+  </div>
+</body>
+</html>
